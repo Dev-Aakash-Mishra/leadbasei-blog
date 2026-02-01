@@ -2,6 +2,15 @@
 <html lang="en">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VBTHHVSFWY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-VBTHHVSFWY');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Request Leads - LeadbaseAI</title>
@@ -84,7 +93,14 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn" style="width: 100%; margin-top: 1rem;">Send via WhatsApp</button>
+                <a href="https://wa.me/918766334584" class="btn whatsapp-btn"
+                    style="width: 100%; margin-top: 1rem; display: block; text-align: center; text-decoration: none;"
+                    onclick="gtag('event', 'whatsapp_click', {
+                        event_category: 'engagement',
+                        event_label: window.location.pathname
+                    });">
+                    Send via WhatsApp
+                </a>
             </form>
         </div>
     </section>
