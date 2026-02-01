@@ -1,11 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <url>
     <loc>https://blog.leadbaseai.in/</loc>
   </url>
+
   <url>
-    <loc>https://blog.leadbaseai.in/posts/</loc>
+    <loc>https://blog.leadbaseai.in/posts/how-to-generate-b2b-leads.html</loc>
   </url>
-  <url>
-    <loc>https://blog.leadbaseai.in/posts/how-ai-is-revolutionizing-lead-generation-2026.html</loc>
-  </url>
+
 </urlset>
