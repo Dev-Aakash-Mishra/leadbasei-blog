@@ -55,7 +55,7 @@ async function fetchBlogPosts() {
     `;
 
     try {
-        const response = await fetch('../assets/index.json');
+        const response = await fetch('assets/index.json');
         if (!response.ok) {
             throw new Error('Failed to fetch blog posts');
         }
