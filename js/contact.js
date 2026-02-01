@@ -119,9 +119,9 @@ _Sent via LeadbaseAI Contact Form_`;
 
 // Send to WhatsApp
 function sendToWhatsApp(formData) {
-    // Replace with your actual WhatsApp number (format: country code + number, no + or spaces)
-    // Example: For +1 234 567 8900, use: 12345678900
-    const whatsappNumber = '+918766334584'; // Replace with your actual number
+    // WhatsApp number (format: country code + number, NO + or spaces)
+    // Example: For +91 876 633 4584, use: 918766334584
+    const whatsappNumber = '918766334584'; // No + sign for wa.me API
 
     const message = formatWhatsAppMessage(formData);
     const encodedMessage = encodeURIComponent(message);
