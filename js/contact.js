@@ -121,7 +121,7 @@ _Sent via LeadbaseAI Contact Form_`;
 function sendToWhatsApp(formData) {
     // Replace with your actual WhatsApp number (format: country code + number, no + or spaces)
     // Example: For +1 234 567 8900, use: 12345678900
-    const whatsappNumber = '918766334584'; // Replace with your actual number
+    const whatsappNumber = '+918766334584'; // Replace with your actual number
 
     const message = formatWhatsAppMessage(formData);
     const encodedMessage = encodeURIComponent(message);
@@ -161,8 +161,18 @@ if (leadForm) {
 
         // Simulate processing delay for better UX
         setTimeout(() => {
-            // Send to WhatsApp
-            sendToWhatsApp(formData);
+            // Track conversion FIRST
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'whatsapp_click', {
+                    event_category: 'Lead',
+                    event_label: window.location.pathname
+                });
+            }
+
+            // Delay WhatsApp redirect slightly to allow GA to send event
+            setTimeout(() => {
+                sendToWhatsApp(formData);
+            }, 200);
 
             // Show success message
             showMessage('Opening WhatsApp... Your request is ready to send!', 'success');
@@ -174,14 +184,6 @@ if (leadForm) {
             if (submitButton) {
                 submitButton.classList.remove('btn-loading');
                 submitButton.disabled = false;
-            }
-
-            // Optional: Track form submission (Google Analytics, etc.)
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'form_submission', {
-                    'event_category': 'Contact',
-                    'event_label': 'Lead Request Form'
-                });
             }
         }, 800);
     });
