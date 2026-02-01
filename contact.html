@@ -5,20 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Request Leads - LeadbaseAI</title>
-    <link rel="icon" type="image/png" href="logo.png">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/contact.css">
 </head>
 
 <body>
 
     <nav>
         <a href="index.html" class="logo">
-            <img src="logo.png" alt="LeadbaseAI">
+            <img src="assets/logo.png" alt="LeadbaseAI">
             <span>LeadbaseAI</span>
         </a>
         <div class="nav-links">
-            <a href="resource.html">Resources</a>
+            <a href="index.html">Home</a>
+            <a href="blog/index.html">Blog</a>
             <a href="contact.html">Contact</a>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <div class="theme-toggle-slider">
+                    <span id="themeIcon">☀️</span>
+                </div>
+            </button>
         </div>
     </nav>
 
@@ -73,7 +89,7 @@
         </div>
     </section>
 
-    <script src="script.js"></script>
+    <script src="js/contact.js"></script>
 
 </body>
 
