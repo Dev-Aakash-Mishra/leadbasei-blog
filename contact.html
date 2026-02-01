@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Leads - LeadbaseAI</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="logo.png" alt="LeadbaseAI">
+            <span>LeadbaseAI</span>
+        </a>
+        <div class="nav-links">
+            <a href="resource.html">Resources</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <section>
+        <div class="form-container">
+            <h2>Request Your <span class="highlight">Lead List</span></h2>
+            <p style="margin-bottom: 2rem;">Fill in your requirements and we'll send you a customized list via WhatsApp.
+            </p>
+
+            <form id="leadForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="nameInput">Your Name</label>
+                        <input type="text" id="nameInput" placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="revenueSelect">Current Revenue (₹)</label>
+                        <select id="revenueSelect" required>
+                            <option value="">Select revenue range</option>
+                            <option value="Below 10L">Below ₹10 Lakhs</option>
+                            <option value="10L-50L">₹10L - ₹50L</option>
+                            <option value="50L-1Cr">₹50L - ₹1 Crore</option>
+                            <option value="1Cr-5Cr">₹1 Cr - ₹5 Cr</option>
+                            <option value="Above 5Cr">Above ₹5 Crore</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="businessSelect">Business Type</label>
+                        <select id="businessSelect" required>
+                            <option value="">Select business type</option>
+                            <option value="B2B">B2B</option>
+                            <option value="B2C">B2C</option>
+                            <option value="Both">Both</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nicheInput">Target Niche</label>
+                        <input type="text" id="nicheInput" placeholder="e.g., Solar, SaaS, E-commerce" required>
+                    </div>
+
+                    <div class="form-group form-group-full">
+                        <label for="countryInput">Target Country</label>
+                        <input type="text" id="countryInput" placeholder="e.g., India, USA, UK" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%; margin-top: 1rem;">Send via WhatsApp</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
