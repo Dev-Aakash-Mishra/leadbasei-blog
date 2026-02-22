@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | LeadbaseAI</title>
+    <link rel="icon" type="image/png" href="assets/logo.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --c-primary: #2563EB;
+            --c-primary-soft: #3B82F6;
+            --c-accent: #6366F1;
+            --c-bg: #E8EEF6;
+            --c-surface: #FFFFFF;
+            --c-text: #1E293B;
+            --c-text-muted: #64748B;
+            --c-border: #C2CCD9;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --ease: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --c-primary: #60A5FA;
+            --c-primary-soft: #3B82F6;
+            --c-accent: #818CF8;
+            --c-bg: #0B0F1A;
+            --c-surface: #141923;
+            --c-text: #F3F4F6;
+            --c-text-muted: #9CA3AF;
+            --c-border: #1F2937;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--c-bg);
+            color: var(--c-text);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            text-align: center;
+            transition: background 300ms var(--ease), color 300ms var(--ease);
+        }
+
+        /* Ambient Background Blobs */
+        .blob-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            filter: blur(80px);
+            border-radius: 50%;
+            opacity: 0.15;
+            animation: drift 20s infinite alternate ease-in-out;
+        }
+
+        [data-theme="dark"] .blob {
+            opacity: 0.25;
+            filter: blur(100px);
+        }
+
+        .blob-1 {
+            background: var(--c-primary);
+            top: -100px;
+            left: -100px;
+        }
+
+        .blob-2 {
+            background: var(--c-accent);
+            bottom: -100px;
+            right: -100px;
+            animation-delay: -5s;
+        }
+
+        @keyframes drift {
+            from {
+                transform: translate(0, 0) scale(1);
+            }
+
+            to {
+                transform: translate(100px, 50px) scale(1.1);
+            }
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .error-code {
+            font-family: var(--font-display);
+            font-size: clamp(8rem, 20vw, 12rem);
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -0.05em;
+            background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-accent) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            color: var(--c-text-muted);
+            font-size: 1.125rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 250ms var(--ease);
+            font-size: 0.9375rem;
+        }
+
+        .btn-primary {
+            background: var(--c-primary);
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: var(--c-primary-soft);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--c-surface);
+            color: var(--c-text);
+            border: 1px solid var(--c-border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--c-primary);
+            transform: translateY(-2px);
+        }
+
+        /* Theme Toggle (Minimal) */
+        #themeToggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--c-surface);
+            border: 1px solid var(--c-border);
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--c-text);
+            transition: all 200ms var(--ease);
+        }
+
+        #themeToggle:hover {
+            transform: scale(1.05);
+            border-color: var(--c-primary);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="blob-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <button id="themeToggle" aria-label="Toggle theme">
+        <svg id="sunIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+        </svg>
+    </button>
+
+    <div class="container">
+        <div class="error-code">404</div>
+        <h1>Lost in Space?</h1>
+        <p>The page you're looking for was either automated away or never existed in the first place.</p>
+
+        <div class="actions">
+            <a href="https://leadbaseai.in" class="btn btn-primary">
+                Return Home
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </a>
+            <a href="https://blog.leadbaseai.in" class="btn btn-secondary">Read the Blog</a>
+            <a href="mailto:support@leadbaseai.in" class="btn btn-secondary">Email Support</a>
+        </div>
+    </div>
+
+    <script>
+        // Simple Theme Toggle
+        const btn = document.getElementById('themeToggle');
+        const sunIcon = document.getElementById('sunIcon');
+
+        // Load initial theme
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+
+        btn.addEventListener('click', () => {
+            let current = document.documentElement.getAttribute('data-theme');
+            if (current === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
+</body>
+
+</html>
