@@ -66,7 +66,7 @@ function injectCTAs() {
                 <h3 class="cta-title">Want more high-quality leads?</h3>
                 <p class="cta-desc">Scale your sales with AI-filtered prospects and automated outreach.</p>
             </div>
-            <a href="../contact.html" class="cta-button">
+            <a href="https://leadbaseai.in/contact" class="cta-button">
                 Get Free Consultation
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
@@ -83,7 +83,7 @@ function injectCTAs() {
             <h2 class="cta-title">Scale your business with LeadbaseAI</h2>
             <p class="cta-desc">Stop wasting time on manual leads. Use our AI-powered platform to find ideal customers in minutes.</p>
         </div>
-        <a href="../contact.html" class="cta-button">
+        <a href="https://leadbaseai.in/contact" class="cta-button">
             Request Custom Leads
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -123,7 +123,7 @@ function injectFooter() {
                 <ul>
                     <li><a href="https://leadbaseai.in/about">About Us</a></li>
                     <li><a href="https://blog.leadbaseai.in">Blog</a></li>
-                    <li><a href="../contact.html">Contact</a></li>
+                    <li><a href="https://leadbaseai.in/contact">Contact</a></li>
                     <li><a href="https://leadbaseai.in/terms">Terms of Service</a></li>
                     <li><a href="https://leadbaseai.in/privacy">Privacy Policy</a></li>
                 </ul>
