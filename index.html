@@ -13,10 +13,22 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - LeadbaseAI</title>
+    <title>Blog | LeadbaseAI</title>
     <meta name="description"
         content="Explore expert insights on AI-powered lead generation, sales automation, and business growth strategies from LeadbaseAI.">
     <link rel="icon" type="image/png" href="assets/logo.png">
+
+    <!-- og tags -->
+    <meta property="og:title" content="LeadBaseAI Blog | Your AI Employee for Lead Generation">
+    <meta property="og:description"
+        content="We As the team of LeadBaseAI takes responsiblity to deploy AI employess for your business so you can sleep and they can work. ">
+    <meta property="og:image" content="https://blog.leadbaseai.in/assets/blog-preview.png">
+    <meta property="og:url" content="https://blog.leadbaseai.in/">
+    <meta property="og:type" content="website">
+
+    <!-- canonical tag -->
+    <link rel="canonical" href="https://blog.leadbaseai.in/">
+
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1221,6 +1233,27 @@
             new MutationObserver(() => {
                 setTimeout(revealCards, 50);
             }).observe(blogGrid, { childList: true });
+        }
+    </script>
+
+    <!-- schema -->
+    <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "url": "https://blog.leadbaseai.in",
+        "publisher": {
+            "@type": "Organization",
+            "name": "LeadBaseAI",
+            "logo": {
+            "@type": "ImageObject",
+            "url": "https://blog.leadbaseai.in/assets/logo.png"
+            }
+        },
+        "sameAs": [
+            "https://www.instagram.com/leadbaseai"
+            "https://www.leadbaseai.in"
+        ]
         }
     </script>
 </body>

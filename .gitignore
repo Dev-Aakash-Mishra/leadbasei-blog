@@ -1,1 +1,41 @@
 main.py
+
+
+#============= blog post meta tags
+# <meta property="og:title" content="How AI Lead Systems Actually Work">
+# <meta property="og:description" content="Step-by-step breakdown of AI-powered lead acquisition systems.">
+# <meta property="og:image" content="https://yourdomain.com/blog/ai-leads-cover.jpg">
+# <meta property="og:url" content="https://yourdomain.com/blog/ai-leads">
+# <meta property="og:type" content="article">
+
+
+# ================ blog post  schema tag
+# <script type="application/ld+json">
+# {
+#   "@context": "https://schema.org",
+#   "@type": "BlogPosting",
+#   "headline": "How AI Lead Systems Work",
+#   "author": {
+#     "@type": "Person",
+#     "name": "Aakash Kumar Mishra"
+#   },
+#   "publisher": {
+#     "@type": "Organization",
+#     "name": "LeadBaseAI",
+#     "logo": {
+#       "@type": "ImageObject",
+#       "url": "https://yourdomain.com/logo.png"
+#     }
+#   },
+#   "datePublished": "2026-02-22",
+#   "dateModified": "2026-02-22",
+#   "mainEntityOfPage": {
+#     "@type": "WebPage",
+#     "@id": "https://yourdomain.com/blog/ai-leads"
+#   }
+# }
+# </script>
+
+# self pointing canonical tags per page 
+# <link rel="canonical" href="https://yourdomain.com/blog/ai-leads">
+
