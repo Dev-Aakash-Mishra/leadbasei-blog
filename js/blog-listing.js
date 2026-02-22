@@ -5,19 +5,27 @@
 // ==========================================
 
 const themeToggle = document.getElementById('themeToggle');
-const themeIcon = document.getElementById('themeIcon');
+const sunIcon = document.getElementById('sunIcon');
+const moonIcon = document.getElementById('moonIcon');
 const html = document.documentElement;
 
 // Check for saved theme preference or default to 'light'
 const currentTheme = localStorage.getItem('theme') || 'light';
 html.setAttribute('data-theme', currentTheme);
-themeIcon.textContent = currentTheme === 'dark' ? '🌙' : '☀️';
+
+function updateThemeIcons(theme) {
+    if (sunIcon && moonIcon) {
+        sunIcon.className = theme === 'dark' ? 'theme-icon-hidden' : 'theme-icon';
+        moonIcon.className = theme === 'dark' ? 'theme-icon' : 'theme-icon-hidden';
+    }
+}
+updateThemeIcons(currentTheme);
 
 themeToggle.addEventListener('click', () => {
     const theme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
     html.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
-    themeIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
+    updateThemeIcons(theme);
 });
 
 // ==========================================
@@ -217,32 +225,17 @@ document.querySelectorAll('.filter-tag').forEach(tag => {
     });
 });
 
-// Search functionality
+// Search functionality (if search box exists)
 const searchInput = document.getElementById('searchInput');
-searchInput.addEventListener('input', (e) => {
-    searchQuery = e.target.value;
-    currentPage = 1;
-    renderBlogCards();
-});
+if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+        currentPage = 1;
+        renderBlogCards();
+    });
+}
 
-// ==========================================
-// Navbar Scroll Effect
-// ==========================================
-
-let lastScroll = 0;
-const navbar = document.querySelector('.navbar');
-
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-
-    if (currentScroll > 100) {
-        navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
-    } else {
-        navbar.style.boxShadow = 'none';
-    }
-
-    lastScroll = currentScroll;
-});
+// Navbar scroll handled by inline script in index.html
 
 // ==========================================
 // Initialize

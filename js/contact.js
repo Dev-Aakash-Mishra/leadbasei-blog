@@ -5,36 +5,28 @@
 // ==========================================
 
 const themeToggle = document.getElementById('themeToggle');
-const themeIcon = document.getElementById('themeIcon');
+const sunIcon = document.getElementById('sunIcon');
+const moonIcon = document.getElementById('moonIcon');
 const html = document.documentElement;
 
 // Check for saved theme preference or default to 'light'
 const currentTheme = localStorage.getItem('theme') || 'light';
 html.setAttribute('data-theme', currentTheme);
 
-// Set initial icon
-if (themeIcon) {
-    themeIcon.textContent = currentTheme === 'dark' ? '🌙' : '☀️';
+function updateThemeIcons(theme) {
+    if (sunIcon && moonIcon) {
+        sunIcon.className = theme === 'dark' ? 'theme-icon-hidden' : 'theme-icon';
+        moonIcon.className = theme === 'dark' ? 'theme-icon' : 'theme-icon-hidden';
+    }
 }
+updateThemeIcons(currentTheme);
 
-// Theme toggle event listener
-if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-        const theme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-        html.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-
-        if (themeIcon) {
-            themeIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
-        }
-
-        // Add a subtle animation to the toggle
-        themeToggle.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-            themeToggle.style.transform = 'scale(1)';
-        }, 150);
-    });
-}
+themeToggle.addEventListener('click', () => {
+    const theme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    html.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    updateThemeIcons(theme);
+});
 
 // ==========================================
 // Form Handling
