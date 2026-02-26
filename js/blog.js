@@ -104,7 +104,7 @@ function injectFooter() {
     footer.innerHTML = `
         <div class="footer-main">
             <div class="footer-brand">
-                <a href="https://leadbaseai.in" class="footer-logo">
+                <a href="https://blog.leadbaseai.in" class="footer-logo">
                     <img src="../assets/logo.png" alt="LeadbaseAI">
                     <span>LeadbaseAI</span>
                 </a>

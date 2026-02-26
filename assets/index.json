@@ -8,5 +8,15 @@
         "category": "AI & Automation",
         "location": "posts/2026-ai-lead-generation.html",
         "readTime": "5 min read"
-    }
+    },
+    {
+    "title": "My Internal AI Sales Agent That Works 24/7",
+    "slug": "ai-sales-agent-b2b-leads",
+    "preview": "How we structure AI sales automation at LeadBaseAI to generate consistent B2B leads using automated cold email generation and AI lead qualification.",
+    "image": "../assets/ai-sales-agent-b2b.png",
+    "date": "2026-02-26",
+    "category": "AI Sales Automation",
+    "location": "posts/ai-sales-agent-b2b-leads.html",
+    "readTime": "7 min read"
+}
 ]

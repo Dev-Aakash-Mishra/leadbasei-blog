@@ -52,16 +52,6 @@ function formatDate(dateString) {
 
 // Fetch blog posts from index.json
 async function fetchBlogPosts() {
-    const blogGrid = document.getElementById('blogGrid');
-
-    // Show loading state
-    blogGrid.innerHTML = `
-        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
-            <div class="loading-spinner"></div>
-            <p style="color: var(--color-text-muted); margin-top: 1rem;">Loading articles...</p>
-        </div>
-    `;
-
     try {
         const response = await fetch('assets/index.json');
         if (!response.ok) {
@@ -81,15 +71,16 @@ async function fetchBlogPosts() {
             readTime: post.readTime,
             image: post.image || 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop',
             slug: post.slug,
-            location: post.location || `/blog/${post.slug}` // Use location field or fallback to slug
+            location: post.location || `/blog/${post.slug}`
         }));
 
         isLoading = false;
-        renderBlogCards();
+        // Do NOT render on initial load — keep static HTML for SEO
+        // JS only renders when user interacts with filters/pagination
     } catch (error) {
         console.error('Error fetching blog posts:', error);
         isLoading = false;
-        showErrorMessage();
+        // On error, static cards remain visible — no broken state
     }
 }
 
@@ -98,8 +89,8 @@ function showErrorMessage() {
     const blogGrid = document.getElementById('blogGrid');
     blogGrid.innerHTML = `
         <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
-            <h3 style="color: var(--color-text); margin-bottom: 1rem;">Unable to load blog posts</h3>
-            <p style="color: var(--color-text-muted);">Please check that index.json exists in the assets folder</p>
+            <h3 style="color: var(--color-text); margin-bottom: 1rem;">No articles found</h3>
+            <p style="color: var(--color-text-muted);">Try adjusting your filter criteria</p>
         </div>
     `;
 }
@@ -112,6 +103,7 @@ let currentCategory = 'all';
 let currentPage = 1;
 let searchQuery = '';
 const postsPerPage = 6;
+let userInteracted = false; // Only render via JS after user interaction
 
 // Get author initials
 function getInitials(name) {
@@ -128,8 +120,10 @@ function getFilteredPosts() {
     });
 }
 
-// Render blog cards
+// Render blog cards — only called after user interaction (filter/search/page change)
 function renderBlogCards() {
+    if (!userInteracted) return; // Preserve static HTML on initial load
+
     const blogGrid = document.getElementById('blogGrid');
     const filteredPosts = getFilteredPosts();
     const startIndex = (currentPage - 1) * postsPerPage;
@@ -140,14 +134,14 @@ function renderBlogCards() {
         blogGrid.innerHTML = `
             <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
                 <h3 style="color: var(--color-text); margin-bottom: 1rem;">No articles found</h3>
-                <p style="color: var(--color-text-muted);">Try adjusting your search or filter criteria</p>
+                <p style="color: var(--color-text-muted);">Try adjusting your filter criteria</p>
             </div>
         `;
         return;
     }
 
     blogGrid.innerHTML = postsToShow.map(post => `
-        <article class="blog-card" onclick="window.location.href='${post.location}'">
+        <article class="blog-card revealed" onclick="this.classList.add('clicking');setTimeout(()=>window.open('${post.location}','_blank'),150)">
             <div class="blog-image">
                 <img src="${post.image}" alt="${post.title}" loading="lazy">
                 <span class="blog-category">${post.categoryLabel}</span>
@@ -164,7 +158,7 @@ function renderBlogCards() {
                         <div class="author-avatar">${getInitials(post.author)}</div>
                         <span class="author-name">${post.author}</span>
                     </div>
-                    <a href="${post.location}" class="read-more">
+                    <a href="${post.location}" target="_blank" rel="noopener" class="read-more" onclick="event.stopPropagation()">
                         Read More →
                     </a>
                 </div>
@@ -209,6 +203,7 @@ function updatePagination(totalPosts) {
 
 // Change page
 function changePage(page) {
+    userInteracted = true;
     currentPage = page;
     renderBlogCards();
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -217,6 +212,7 @@ function changePage(page) {
 // Filter by category
 document.querySelectorAll('.filter-tag').forEach(tag => {
     tag.addEventListener('click', () => {
+        userInteracted = true;
         document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
         tag.classList.add('active');
         currentCategory = tag.dataset.category;
@@ -229,6 +225,7 @@ document.querySelectorAll('.filter-tag').forEach(tag => {
 const searchInput = document.getElementById('searchInput');
 if (searchInput) {
     searchInput.addEventListener('input', (e) => {
+        userInteracted = true;
         searchQuery = e.target.value;
         currentPage = 1;
         renderBlogCards();
@@ -241,8 +238,9 @@ if (searchInput) {
 // Initialize
 // ==========================================
 
-// Fetch and render blog posts on page load
+// Fetch JSON data (for filtering/pagination) but do NOT replace static HTML
 fetchBlogPosts();
 
 console.log('%c📚 LeadbaseAI Blog Listing Loaded!', 'color: #33B5FF; font-size: 16px; font-weight: bold;');
-console.log('%cFetching blog posts from index.json...', 'color: #64748B; font-size: 12px;');
+console.log('%cStatic cards preserved for SEO. JS handles filtering only.', 'color: #64748B; font-size: 12px;');
+
