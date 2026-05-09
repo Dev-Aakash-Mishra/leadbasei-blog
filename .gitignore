@@ -1,12 +1,12 @@
 main.py
-prompt.txt
+.agent/
 
 
 #============= blog post meta tags
 # <meta property="og:title" content="How AI Lead Systems Actually Work">
 # <meta property="og:description" content="Step-by-step breakdown of AI-powered lead acquisition systems.">
-# <meta property="og:image" content="https://yourdomain.com/blog/ai-leads-cover.jpg">
-# <meta property="og:url" content="https://yourdomain.com/blog/ai-leads">
+# <meta property="og:image" content="https://leadbaseai.in/assets/ai-sales-agent-b2b.png">
+# <meta property="og:url" content="https://leadbaseai.in/blog/ai-sales-agent-b2b-leads.html">
 # <meta property="og:type" content="article">
 
 

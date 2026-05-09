@@ -1,4 +1,50 @@
-// Blog Post JavaScript with Theme Toggle and Natural CTA Injection
+// Blog Post JavaScript – Lenis Smooth Scroll + Theme Toggle + Premium Features
+// ============================================================
+
+// ==========================================
+// Lenis Smooth Scroll Initialization
+// ==========================================
+
+let lenis;
+
+function initLenis() {
+    // Guard: Lenis must be loaded from CDN before this runs
+    if (typeof Lenis === 'undefined') {
+        console.warn('Lenis not loaded yet – skipping smooth scroll init.');
+        return;
+    }
+
+    lenis = new Lenis({
+        duration: 1.2,              // Scroll animation duration (seconds)
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Expo out
+        direction: 'vertical',
+        gestureDirection: 'vertical',
+        smooth: true,
+        mouseMultiplier: 1.0,
+        smoothTouch: false,         // Keep native on mobile for performance
+        touchMultiplier: 2,
+        infinite: false,
+    });
+
+    // Tick Lenis on every animation frame
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // Wire scroll-dependent UI updates through Lenis
+    lenis.on('scroll', ({ scroll, limit, velocity, direction, progress }) => {
+        // Reading progress bar
+        const pct = Math.min(progress * 100, 100);
+        if (progressBar) progressBar.style.width = `${pct}%`;
+
+        // Navbar scroll state
+        handleNavScroll(scroll);
+    });
+
+    console.log('%c🌊 Lenis Smooth Scroll Active', 'color: #6366F1; font-size: 13px; font-weight: bold;');
+}
 
 // ==========================================
 // Theme Toggle Functionality
@@ -32,16 +78,20 @@ if (themeToggle) {
 }
 
 // ==========================================
-// Inject Premium Background Blobs
+// Inject Premium Background Orbs
 // ==========================================
 
 function injectBlobs() {
+    // Avoid double injection
+    if (document.querySelector('.blob-container')) return;
+
     const container = document.createElement('div');
     container.className = 'blob-container';
     container.innerHTML = `
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
         <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
     `;
     document.body.prepend(container);
 }
@@ -54,8 +104,7 @@ function injectCTAs() {
     const postContent = document.querySelector('.blog-post-content');
     if (!postContent) return;
 
-    // Top CTA (Natural "Inside" the content)
-    // We'll place it after the 3rd paragraph
+    // Top CTA – placed after the 3rd paragraph
     const paragraphs = postContent.querySelectorAll('p');
     if (paragraphs.length >= 3) {
         const topCTA = document.createElement('div');
@@ -66,7 +115,7 @@ function injectCTAs() {
                 <h3 class="cta-title">Want more high-quality leads?</h3>
                 <p class="cta-desc">Scale your sales with AI-filtered prospects and automated outreach.</p>
             </div>
-            <a href="https://leadbaseai.in/contact" class="cta-button">
+            <a href="https://blog.leadbaseai.in/contact" class="cta-button">
                 Get Free Consultation
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
@@ -74,7 +123,7 @@ function injectCTAs() {
         paragraphs[2].after(topCTA);
     }
 
-    // Bottom CTA (Conclusion CTA)
+    // Bottom CTA – appended at end of content
     const bottomCTA = document.createElement('div');
     bottomCTA.className = 'blog-cta';
     bottomCTA.innerHTML = `
@@ -96,7 +145,6 @@ function injectCTAs() {
 // ==========================================
 
 function injectFooter() {
-    // Check if footer already exists to avoid double injection
     if (document.querySelector('.footer')) return;
 
     const footer = document.createElement('footer');
@@ -153,9 +201,9 @@ function injectFooter() {
 // ==========================================
 
 function createProgressBar() {
-    const progressBar = document.createElement('div');
-    progressBar.id = 'reading-progress';
-    progressBar.style.cssText = `
+    const bar = document.createElement('div');
+    bar.id = 'reading-progress';
+    bar.style.cssText = `
         position: fixed;
         top: 0;
         left: 0;
@@ -163,33 +211,34 @@ function createProgressBar() {
         height: 3px;
         background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-primary) 100%);
         z-index: 9999;
-        transition: width 0.1s ease-out;
+        transition: width 0.08s ease-out;
+        pointer-events: none;
     `;
-    document.body.appendChild(progressBar);
-
-    return progressBar;
+    document.body.appendChild(bar);
+    return bar;
 }
 
 const progressBar = createProgressBar();
 
-function updateReadingProgress() {
+// Fallback updater used only when Lenis is NOT available
+function updateReadingProgressNative() {
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight - windowHeight;
     const scrolled = window.scrollY;
     const progress = (scrolled / documentHeight) * 100;
-
-    progressBar.style.width = `${Math.min(progress, 100)}%`;
+    if (progressBar) progressBar.style.width = `${Math.min(progress, 100)}%`;
 }
 
 // ==========================================
 // Navbar Scroll Handlers
 // ==========================================
 
-function handleNavScroll() {
+function handleNavScroll(scrollY) {
     const nav = document.querySelector('nav');
     if (!nav) return;
+    const y = scrollY !== undefined ? scrollY : window.scrollY;
 
-    if (window.scrollY > 30) {
+    if (y > 30) {
         nav.classList.add('navbar-scrolled');
     } else {
         nav.classList.remove('navbar-scrolled');
@@ -209,7 +258,6 @@ function calculateReadingTime() {
     const wordsPerMinute = 200;
     const readingTime = Math.ceil(wordCount / wordsPerMinute);
 
-    // Update reading time if element exists
     const readingTimeElement = document.querySelector('.reading-time');
     if (readingTimeElement) {
         readingTimeElement.innerHTML = `<span>🕒</span> ${readingTime} min read`;
@@ -217,7 +265,7 @@ function calculateReadingTime() {
 }
 
 // ==========================================
-// Initialize Content
+// Initialize Everything on DOM Ready
 // ==========================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -225,18 +273,19 @@ document.addEventListener('DOMContentLoaded', () => {
     injectCTAs();
     injectFooter();
     calculateReadingTime();
+    handleNavScroll(0);
 
-    // Initial scroll check
-    handleNavScroll();
-});
+    // Init Lenis after DOM is ready
+    initLenis();
 
-window.addEventListener('scroll', () => {
-    updateReadingProgress();
-    handleNavScroll();
-});
-
-window.addEventListener('resize', () => {
-    updateReadingProgress();
+    // If Lenis failed (CDN not loaded), fall back to native scroll listeners
+    if (!lenis) {
+        window.addEventListener('scroll', () => {
+            updateReadingProgressNative();
+            handleNavScroll();
+        });
+        window.addEventListener('resize', updateReadingProgressNative);
+    }
 });
 
 // ==========================================

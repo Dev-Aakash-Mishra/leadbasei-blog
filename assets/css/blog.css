@@ -49,7 +49,34 @@
     --color-code-text: #F3F4F6;
 }
 
-/* Drifting Background Blobs */
+/* ============================================
+   Lenis Smooth Scroll Support
+   ============================================ */
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+    pointer-events: none;
+}
+
+/* ============================================
+   Floating Orb System – Deeply Layered
+   Real physics-feel blobs that breathe beneath content
+   ============================================ */
 .blob-container {
     position: fixed;
     top: 0;
@@ -59,55 +86,194 @@
     z-index: -1;
     pointer-events: none;
     overflow: hidden;
+    /* Perspective for depth layering */
+    perspective: 800px;
 }
 
+/* Base orb */
 .blob {
     position: absolute;
-    width: 40vw;
-    height: 40vw;
     border-radius: 50%;
-    filter: blur(140px);
-    opacity: 0.1;
-    animation: drift 25s infinite alternate ease-in-out;
+    background: radial-gradient(circle at 35% 35%, var(--orb-color-inner), var(--orb-color-outer) 70%, transparent 100%);
+    will-change: transform;
+    transform-origin: center center;
 }
 
-[data-theme="dark"] .blob {
-    opacity: 0.15;
-    filter: blur(120px);
-}
-
+/* Light theme orb defaults */
 .blob-1 {
-    background: var(--color-primary);
-    top: -10%;
-    left: -10%;
-    animation-duration: 22s;
+    --orb-color-inner: rgba(99, 102, 241, 0.22);
+    --orb-color-outer: rgba(37, 99, 235, 0.08);
+    width: 52vw;
+    height: 52vw;
+    top: -14%;
+    left: -12%;
+    filter: blur(110px);
+    animation:
+        orbDrift1 28s ease-in-out infinite alternate,
+        orbPulse 8s ease-in-out infinite alternate;
 }
 
 .blob-2 {
-    background: var(--color-accent);
-    bottom: -10%;
+    --orb-color-inner: rgba(129, 140, 248, 0.20);
+    --orb-color-outer: rgba(99, 102, 241, 0.07);
+    width: 48vw;
+    height: 48vw;
+    bottom: -12%;
     right: -10%;
-    animation-duration: 28s;
-    animation-delay: -5s;
+    filter: blur(115px);
+    animation:
+        orbDrift2 34s ease-in-out infinite alternate,
+        orbPulse 10s ease-in-out infinite alternate;
+    animation-delay: -6s, -3s;
 }
 
 .blob-3 {
-    background: #F43F5E;
-    top: 40%;
-    left: 50%;
-    width: 30vw;
-    height: 30vw;
-    animation-duration: 35s;
-    animation-delay: -10s;
+    --orb-color-inner: rgba(244, 63, 94, 0.17);
+    --orb-color-outer: rgba(244, 63, 94, 0.05);
+    width: 36vw;
+    height: 36vw;
+    top: 35%;
+    left: 48%;
+    filter: blur(120px);
+    animation:
+        orbDrift3 42s ease-in-out infinite alternate,
+        orbPulse 12s ease-in-out infinite alternate;
+    animation-delay: -12s, -8s;
 }
 
-@keyframes drift {
+/* Fourth orb */
+.blob-4 {
+    --orb-color-inner: rgba(16, 185, 129, 0.15);
+    --orb-color-outer: rgba(16, 185, 129, 0.04);
+    width: 28vw;
+    height: 28vw;
+    top: 60%;
+    left: 10%;
+    filter: blur(120px);
+    animation:
+        orbDrift4 38s ease-in-out infinite alternate,
+        orbPulse 9s ease-in-out infinite alternate;
+    animation-delay: -20s, -5s;
+}
+
+/* Dark mode – clearly visible ambient glow, not overpowering */
+[data-theme="dark"] .blob-1 {
+    --orb-color-inner: rgba(99, 102, 241, 0.28);
+    --orb-color-outer: rgba(37, 99, 235, 0.10);
+    filter: blur(90px);
+}
+
+[data-theme="dark"] .blob-2 {
+    --orb-color-inner: rgba(129, 140, 248, 0.25);
+    --orb-color-outer: rgba(99, 102, 241, 0.08);
+    filter: blur(95px);
+}
+
+[data-theme="dark"] .blob-3 {
+    --orb-color-inner: rgba(244, 63, 94, 0.20);
+    --orb-color-outer: rgba(244, 63, 94, 0.06);
+    filter: blur(100px);
+}
+
+[data-theme="dark"] .blob-4 {
+    --orb-color-inner: rgba(16, 185, 129, 0.18);
+    --orb-color-outer: rgba(16, 185, 129, 0.05);
+    filter: blur(105px);
+}
+
+/* Orb drift keyframes – amplified travel distances for clear visible motion */
+@keyframes orbDrift1 {
     0% {
         transform: translate(0, 0) scale(1) rotate(0deg);
     }
 
+    25% {
+        transform: translate(14vw, 18vh) scale(1.08) rotate(14deg);
+    }
+
+    50% {
+        transform: translate(8vw, 38vh) scale(0.96) rotate(28deg);
+    }
+
+    75% {
+        transform: translate(22vw, 20vh) scale(1.06) rotate(18deg);
+    }
+
     100% {
-        transform: translate(10vw, 15vh) scale(1.1) rotate(45deg);
+        transform: translate(26vw, 44vh) scale(1.14) rotate(48deg);
+    }
+}
+
+@keyframes orbDrift2 {
+    0% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+
+    30% {
+        transform: translate(-18vw, -14vh) scale(1.07) rotate(-20deg);
+    }
+
+    60% {
+        transform: translate(-10vw, -30vh) scale(0.94) rotate(-36deg);
+    }
+
+    100% {
+        transform: translate(-28vw, -22vh) scale(1.10) rotate(-54deg);
+    }
+}
+
+@keyframes orbDrift3 {
+    0% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+
+    20% {
+        transform: translate(-12vw, 10vh) scale(1.10) rotate(24deg);
+    }
+
+    55% {
+        transform: translate(10vw, -18vh) scale(0.91) rotate(-14deg);
+    }
+
+    80% {
+        transform: translate(-18vw, 14vh) scale(1.05) rotate(36deg);
+    }
+
+    100% {
+        transform: translate(14vw, -26vh) scale(1.16) rotate(-26deg);
+    }
+}
+
+@keyframes orbDrift4 {
+    0% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+
+    40% {
+        transform: translate(18vw, -22vh) scale(1.09) rotate(30deg);
+    }
+
+    70% {
+        transform: translate(7vw, 14vh) scale(0.95) rotate(12deg);
+    }
+
+    100% {
+        transform: translate(26vw, -18vh) scale(1.06) rotate(42deg);
+    }
+}
+
+/* Subtle breathing pulse layered on top of drift */
+@keyframes orbPulse {
+    0% {
+        opacity: 0.85;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.8;
     }
 }
 
@@ -153,6 +319,8 @@ nav {
     margin: 0 auto;
     padding: 4rem 1.5rem 8rem;
     position: relative;
+    /* Ensure blog content sits above the blobs visually */
+    isolation: isolate;
 }
 
 /* Header Aesthetics */
@@ -177,7 +345,7 @@ nav {
 
 .blog-post-header h1 {
     font-family: var(--font-display);
-    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
     font-weight: 700;
     line-height: 1.05;
     letter-spacing: -0.04em;
@@ -190,7 +358,7 @@ nav {
     align-items: center;
     gap: 1.25rem;
     color: var(--color-text-muted);
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
     font-weight: 500;
 }
 
@@ -217,7 +385,7 @@ nav {
 
 /* Professional Content Typography */
 .blog-post-content {
-    font-size: 1.1875rem;
+    font-size: 1rem;
     line-height: 1.75;
     color: var(--color-text);
 }
@@ -229,7 +397,7 @@ nav {
 
 .blog-post-content h2 {
     font-family: var(--font-display);
-    font-size: 1.875rem;
+    font-size: 1.5rem;
     font-weight: 700;
     letter-spacing: -0.03em;
     margin: 3.5rem 0 1.25rem;
@@ -238,7 +406,7 @@ nav {
 
 .blog-post-content h3 {
     font-family: var(--font-display);
-    font-size: 1.4375rem;
+    font-size: 1.2rem;
     font-weight: 700;
     margin: 2.5rem 0 1rem;
     letter-spacing: -0.02em;
@@ -255,7 +423,7 @@ nav {
 }
 
 .blog-post-content blockquote p {
-    font-size: 1.375rem;
+    font-size: 1.1rem;
     font-weight: 500;
     line-height: 1.5;
     color: var(--color-text);
