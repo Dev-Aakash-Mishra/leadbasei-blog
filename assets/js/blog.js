@@ -153,7 +153,7 @@ function injectFooter() {
         <div class="footer-main">
             <div class="footer-brand">
                 <a href="https://blog.leadbaseai.in" class="footer-logo">
-                    <img src="../assets/logo.png" alt="LeadbaseAI">
+                    <img src="../assets/images/logo.png" alt="LeadbaseAI">
                     <span>LeadbaseAI</span>
                 </a>
                 <p class="footer-tagline">AI for lead generation starts here</p>
