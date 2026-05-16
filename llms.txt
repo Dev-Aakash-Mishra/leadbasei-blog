@@ -1,6 +1,13 @@
 # LLM Index
 
 /index.md
+/llms/automating-wrong-things-india.md
+/llms/whatsapp-crm-lead-loss.md
+/llms/ai-problem-is-a-process-problem.md
+/llms/get-back-to-you-soon-indian-business.md
+/llms/ai-automation-feels-like-a-scam.md
+/llms/why-ai-projects-fail-companies.md
+/llms/why-indian-businesses-not-generating-leads.md
 /llms/indian-businesses-lose-leads-first-inquiry.md
 /llms/ai-automation-new-crm-2026.md
 /llms/2026-ai-lead-generation.md

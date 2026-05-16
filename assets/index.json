@@ -1,5 +1,75 @@
 [
     {
+        "title": "Every Indian Business Wants Automation, But Most Automate the Wrong Things",
+        "slug": "automating-wrong-things-india",
+        "preview": "Indian businesses are spending on automation but targeting the wrong processes. The bottleneck is never where they think it is \u2014 here's how to find the right one.",
+        "image": "assets/images/automating-wrong-things-india.png",
+        "date": "2026-05-06",
+        "category": "AI & Automation",
+        "location": "posts/automating-wrong-things-india.html",
+        "readTime": "5 min read"
+    },
+    {
+        "title": "Why Most Businesses Lose Hot Leads Between WhatsApp and CRM",
+        "slug": "whatsapp-crm-lead-loss",
+        "preview": "Hot leads arrive on WhatsApp and vanish before reaching the CRM. Here's the structural gap killing Indian B2B pipelines \u2014 and what actually fixes it.",
+        "image": "assets/images/whatsapp-crm-lead-loss.png",
+        "date": "2026-05-05",
+        "category": "Lead Generation",
+        "location": "posts/whatsapp-crm-lead-loss.html",
+        "readTime": "5 min read"
+    },
+    {
+        "title": "Your Business Doesn't Have an AI Problem. It Has a Process Problem",
+        "slug": "ai-problem-is-a-process-problem",
+        "preview": "95% of AI deployments return zero measurable value. The technology isn't the issue \u2014 the broken process underneath it always is.",
+        "image": "assets/images/ai-problem-is-a-process-problem.png",
+        "date": "2026-05-04",
+        "category": "AI & Automation",
+        "location": "posts/ai-problem-is-a-process-problem.html",
+        "readTime": "5 min read"
+    },
+    {
+        "title": "The Dark Side of 'We'll Get Back to You Soon' in Indian Businesses",
+        "slug": "get-back-to-you-soon-indian-business",
+        "preview": "Indian businesses lose qualified leads every day to delayed follow-ups. 'We'll get back to you' is not a promise \u2014 it's where pipelines go to die.",
+        "image": "assets/images/get-back-to-you-soon-indian-business.png",
+        "date": "2026-05-03",
+        "category": "Sales Strategy",
+        "location": "posts/get-back-to-you-soon-indian-business.html",
+        "readTime": "5 min read"
+    },
+    {
+        "title": "Why AI Automation Feels Like a Scam to Most Businesses",
+        "slug": "ai-automation-feels-like-a-scam",
+        "preview": "Most businesses invest in AI automation and see nothing. The problem isn't the technology \u2014 it's what they deploy it on top of.",
+        "image": "assets/images/ai-automation-feels-like-a-scam.png",
+        "date": "2026-05-01",
+        "category": "AI & Automation",
+        "location": "posts/ai-automation-feels-like-a-scam.html",
+        "readTime": "5 min read"
+    },
+    {
+        "title": "Why AI Projects Fail in Most Companies",
+        "slug": "why-ai-projects-fail-companies",
+        "preview": "Over 80% of AI projects fail to deliver business value. The cause isn't the technology \u2014 it's the absence of workflow fit, clean data, and defined outcomes.",
+        "image": "assets/images/why-ai-projects-fail-companies.png",
+        "date": "2026-05-02",
+        "category": "AI & Automation",
+        "location": "posts/why-ai-projects-fail-companies.html",
+        "readTime": "5 min read"
+    },
+    {
+        "title": "Why Indian Businesses Are Not Generating Leads",
+        "slug": "why-indian-businesses-not-generating-leads",
+        "preview": "Indian businesses spend on ads but still don't generate leads consistently. The problem isn't budget \u2014 it's the absence of a structured lead generation system.",
+        "image": "assets/images/why-indian-businesses-not-generating-leads.png",
+        "date": "2026-05-01",
+        "category": "Lead Generation",
+        "location": "posts/why-indian-businesses-not-generating-leads.html",
+        "readTime": "5 min read"
+    },
+    {
         "title": "Why Most Indian Businesses Lose Leads After the First Inquiry",
         "slug": "indian-businesses-lose-leads-first-inquiry",
         "preview": "Most Indian businesses lose leads not from bad products, but from broken follow-up systems. Here's the exact operational gap \u2014 and how to fix it.",
