@@ -75,8 +75,7 @@ async function fetchBlogPosts() {
         }));
 
         isLoading = false;
-        // Do NOT render on initial load — keep static HTML for SEO
-        // JS only renders when user interacts with filters/pagination
+        renderBlogCards(); // Render immediately to enable pagination listeners
     } catch (error) {
         console.error('Error fetching blog posts:', error);
         isLoading = false;
@@ -103,7 +102,7 @@ let currentCategory = 'all';
 let currentPage = 1;
 let searchQuery = '';
 const postsPerPage = 6;
-let userInteracted = false; // Only render via JS after user interaction
+let userInteracted = true; // Set to true to allow immediate rendering
 
 // Get author initials
 function getInitials(name) {
@@ -122,8 +121,6 @@ function getFilteredPosts() {
 
 // Render blog cards — only called after user interaction (filter/search/page change)
 function renderBlogCards() {
-    if (!userInteracted) return; // Preserve static HTML on initial load
-
     const blogGrid = document.getElementById('blogGrid');
     const filteredPosts = getFilteredPosts();
     const startIndex = (currentPage - 1) * postsPerPage;
@@ -242,5 +239,5 @@ if (searchInput) {
 fetchBlogPosts();
 
 console.log('%c📚 LeadbaseAI Blog Listing Loaded!', 'color: #33B5FF; font-size: 16px; font-weight: bold;');
-console.log('%cStatic cards preserved for SEO. JS handles filtering only.', 'color: #64748B; font-size: 12px;');
+console.log('%cJS Pagination and Filtering initialized.', 'color: #64748B; font-size: 12px;');
 
