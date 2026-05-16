@@ -594,9 +594,46 @@ body {
 
 .blog-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.25rem;
     margin-bottom: 2rem;
+}
+
+/* SEO Fallback: Hide cards beyond the first 6 in static HTML */
+/* This ensures pagination "looks" working even before JS kicks in */
+.blog-grid > .blog-card:nth-child(n+7) {
+    display: none;
+}
+
+/* Allow JS to override the hide rule when rendering dynamic pages */
+.blog-grid > .blog-card.revealed {
+    display: flex !important;
+}
+
+@media (max-width: 1024px) {
+    .blog-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    /* Show only 4 cards on tablet static view (2x2) */
+    .blog-grid > .blog-card:nth-child(n+5) {
+        display: none;
+    }
+    .blog-grid > .blog-card.revealed {
+        display: flex !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+    /* Show only 3 cards on mobile static view */
+    .blog-grid > .blog-card:nth-child(n+4) {
+        display: none;
+    }
+    .blog-grid > .blog-card.revealed {
+        display: flex !important;
+    }
 }
 
 .blog-card {
