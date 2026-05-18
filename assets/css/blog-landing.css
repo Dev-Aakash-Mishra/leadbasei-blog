@@ -637,6 +637,8 @@ body {
 }
 
 .blog-card {
+    text-decoration: none;
+    color: inherit;
     background: var(--c-surface);
     border-radius: 14px;
     overflow: hidden;
@@ -661,7 +663,8 @@ body {
     border-color: var(--c-primary);
 }
 
-.blog-card.clicking {
+.blog-card.clicking,
+.blog-card:active {
     transform: scale(0.96) !important;
     opacity: 0.85;
     transition: transform 150ms ease, opacity 150ms ease;

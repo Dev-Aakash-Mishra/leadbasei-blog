@@ -138,7 +138,7 @@ function renderBlogCards() {
     }
 
     blogGrid.innerHTML = postsToShow.map(post => `
-        <article class="blog-card revealed" onclick="this.classList.add('clicking');setTimeout(()=>window.open('${post.location}','_blank'),150)">
+        <a class="blog-card revealed" href="${post.location}" data-slug="${post.slug}">
             <div class="blog-image">
                 <img src="${post.image}" alt="${post.title}" loading="lazy">
                 <span class="blog-category">${post.categoryLabel}</span>
@@ -155,12 +155,10 @@ function renderBlogCards() {
                         <div class="author-avatar">${getInitials(post.author)}</div>
                         <span class="author-name">${post.author}</span>
                     </div>
-                    <a href="${post.location}" target="_blank" rel="noopener" class="read-more" onclick="event.stopPropagation()">
-                        Read More →
-                    </a>
+                    <span class="read-more">Read More →</span>
                 </div>
             </div>
-        </article>
+        </a>
     `).join('');
 
     // Update pagination
