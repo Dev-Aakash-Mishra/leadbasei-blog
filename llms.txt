@@ -1,6 +1,15 @@
 # LLM Index
 
 /index.md
+/llms/business-growth-operational-chaos-scaling.md
+/llms/missed-follow-ups-sales-lost-customers.md
+/llms/whatsapp-business-unmanageable-at-scale.md
+/llms/no-tracking-lead-followups-sales-teams.md
+/llms/losing-customer-conversations-multiple-platforms.md
+/llms/lead-gen-working-conversions-low.md
+/llms/customers-feeling-ignored-delayed-responses.md
+/llms/manual-ops-bottleneck-scaling.md
+/llms/leads-daily-closing-nobody.md
 /llms/automating-wrong-things-india.md
 /llms/whatsapp-crm-lead-loss.md
 /llms/ai-problem-is-a-process-problem.md

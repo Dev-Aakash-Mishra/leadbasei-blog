@@ -104,6 +104,11 @@ function injectCTAs() {
     const postContent = document.querySelector('.blog-post-content');
     if (!postContent) return;
 
+    // Simple, high-converting 1-2 liner starter message for WhatsApp leads
+    const whatsappMessage = `Hey LeadbaseAI! I just read your blog and I'm interested in getting custom leads to scale my business. Let's connect!`;
+
+    const whatsappLink = `https://wa.me/918766334584?text=${encodeURIComponent(whatsappMessage)}`;
+
     // Top CTA – placed after the 3rd paragraph
     const paragraphs = postContent.querySelectorAll('p');
     if (paragraphs.length >= 3) {
@@ -115,29 +120,13 @@ function injectCTAs() {
                 <h3 class="cta-title">Want more high-quality leads?</h3>
                 <p class="cta-desc">Scale your sales with AI-filtered prospects and automated outreach.</p>
             </div>
-            <a href="https://blog.leadbaseai.in/contact" class="cta-button">
+            <a href="${whatsappLink}" class="cta-button" target="_blank" rel="noopener noreferrer">
                 Get Free Consultation
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
         `;
         paragraphs[2].after(topCTA);
     }
-
-    // Bottom CTA – appended at end of content
-    const bottomCTA = document.createElement('div');
-    bottomCTA.className = 'blog-cta';
-    bottomCTA.innerHTML = `
-        <div class="cta-content">
-            <div class="cta-tag">Start Growing Today</div>
-            <h2 class="cta-title">Scale your business with LeadbaseAI</h2>
-            <p class="cta-desc">Stop wasting time on manual leads. Use our AI-powered platform to find ideal customers in minutes.</p>
-        </div>
-        <a href="https://leadbaseai.in/contact" class="cta-button">
-            Request Custom Leads
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-    `;
-    postContent.appendChild(bottomCTA);
 }
 
 // ==========================================
